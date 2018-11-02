@@ -2,6 +2,7 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 from api import app, api
 
+
 class Database:
     def __init__(self):
         self.conn = psycopg2.connect(dbname="hairstyle",user="postgres",host="localhost",password="password")
