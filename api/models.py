@@ -18,3 +18,8 @@ class Database:
         email VARCHAR(60) UNIQUE NOT NULL, password VARCHAR(200) NOT NULL,\
         role VARCHAR(20))"
         self.cur.execute(users)
+    def create_business_table(self):
+        business = "CREATE TABLE IF NOT EXISTS business(business_id serial PRIMARY KEY,\
+        business_name VARCHAR(200) UNIQUE NOT NULL, business_location VARCHAR(60) NOT NULL,\
+        business_telephone VARCHAR(30) NOT NULL, staff_id INT, FOREIGN KEY(staff_id) REFERENCES users(user_id))"
+        self.cur.execute(business)

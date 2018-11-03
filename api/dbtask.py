@@ -12,3 +12,11 @@ class Users(Database):
 
     def check_login(self,data):
         return True
+
+class Business(Database):
+    def add_business(self, business):
+        query = "INSERT INTO business(business_name, business_location, business_telephone, staff_id)\
+        VALUES('{}','{}','{}','{}')".format(business['business_name'], business["business_location"],\
+        business["business_telephone"], business["staff_id"])
+        self.cur.execute(query)
+        return business
