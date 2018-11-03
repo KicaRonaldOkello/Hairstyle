@@ -27,3 +27,7 @@ class Hairstyles(Resource):
         }
         b.add_hairstyle(hairstyles)
         return {"message":"Hairstyle added"}, 201
+
+    def get(self):
+        all_hairs = b.get_hairstyles()
+        return {"hairstyles": all_hairs}, 200
