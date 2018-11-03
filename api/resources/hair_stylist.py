@@ -31,3 +31,5 @@ class Hairstyles(Resource):
     def get(self):
         all_hairs = b.get_hairstyles()
         return {"hairstyles": all_hairs}, 200
+
+
