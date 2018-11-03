@@ -20,3 +20,11 @@ class Business(Database):
         business["business_telephone"], business["staff_id"])
         self.cur.execute(query)
         return business
+
+class HairStyle(Database):
+    def add_hairstyle(self, hair):
+        query = "INSERT INTO hairstyle(hairstyle_name, hairstyle_description, price_range, staff_id)\
+        VALUES('{}','{}','{}','{}')".format(hair['hairstyle_name'], hair['hairstyle_description'],\
+        hair['price_range'], hair['staff_id'])
+        self.cur.execute(query)
+        return hair
