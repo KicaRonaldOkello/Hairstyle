@@ -1,7 +1,7 @@
 from api import app
 from flask_restful import Resource
 from flask import Flask, request, json
-from api.dbtask import Business, HairStyle
+from api.dbtask import Business,HairStyle
 
 a = Business()
 b = HairStyle()
