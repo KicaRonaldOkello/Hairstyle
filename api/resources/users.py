@@ -13,7 +13,7 @@ class SignupStylist(Resource):
         signup = {
             "firstname": request.json.get("firstname",None),
             "lastname": request.json.get("lastname",None),
-            "email": request.json.get("email",None),
+            "email":  request.json.get("email",None),
             "password": request.json.get("password",None),
             "role":self.role
         }
