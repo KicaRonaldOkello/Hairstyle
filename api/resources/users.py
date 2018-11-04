@@ -18,7 +18,7 @@ class SignupStylist(Resource):
             "role":self.role
         }
         parser = reqparse.RequestParser()
-        parser.add_argument('firstname', type=char, help='Please input correct firstname',required=True)
+        parser.add_argument('firstname', type=str, help='Please input correct firstname',required=True)
         args = parser.parse_args()
         b.signup_users(signup)
         return {"message":"Signup created"}, 201
@@ -37,5 +37,4 @@ class SigninStylist(Resource):
 
 class Signup(SignupStylist):
     role="user"
-
 
