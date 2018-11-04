@@ -10,9 +10,6 @@ class Users(Database):
         self.cur.execute(query)
         return data
 
-    def check_login(self,data):
-        return True
-
 class Business(Database):
     def add_business(self, business):
         query = "INSERT INTO business(business_name, business_location, business_telephone, staff_id)\
