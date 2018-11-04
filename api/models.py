@@ -29,3 +29,9 @@ class Database:
         hairstyle_name VARCHAR(50) NOT NULL, hairstyle_description VARCHAR(300), price_range VARCHAR(20) NOT NULL,\
         staff_id INT, FOREIGN KEY (staff_id) REFERENCES users(user_id))"
         self.cur.execute(hair)
+
+    def create_services_table(self):
+        service = "CREATE TABLE IF NOT EXISTS services(service_id serial PRIMARY KEY,\
+        service_name VARCHAR(50) NOT NULL, service_description VARCHAR(300), price_range VARCHAR(20) NOT NULL,\
+        staff_id INT, FOREIGN KEY (staff_id) REFERENCES users(user_id))"
+        self.cur.execute(service)

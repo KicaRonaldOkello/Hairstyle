@@ -34,3 +34,10 @@ class HairStyle(Database):
         self.dict_cur.execute(query)
         all_hairstyles = self.dict_cur.fetchall()
         return all_hairstyles
+
+    def add_services(self, service):
+        query = "INSERT INTO services(service_name, service_description, price_range, staff_id)\
+        VALUES('{}','{}','{}','{}')".format(service['service_name'], service['service_description'],\
+        service['price_range'], service['staff_id'])
+        self.cur.execute(query)
+        return service
