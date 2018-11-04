@@ -31,3 +31,16 @@ class Hairstyles(Resource):
     def get(self):
         all_hairs = b.get_hairstyles()
         return {"hairstyles": all_hairs}, 200
+
+class OtherServices(Resource):
+    def post(self):
+        service = {
+            'service_name':request.json['service_name'],
+            'service_description':request.json['service_description'],
+            'price_range':request.json['price_range'],
+            'staff_id':request.json['staff_id']
+        }
+        b.add_services(service)
+        return {
+            "message":"Service added"
+        }, 201

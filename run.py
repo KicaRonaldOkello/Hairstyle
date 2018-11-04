@@ -5,6 +5,7 @@ a = Database()
 a.create_user_table()
 a.create_business_table()
 a.create_hairstyle_table()
+a.create_services_table()
 
 
 if __name__ == '__main__':
