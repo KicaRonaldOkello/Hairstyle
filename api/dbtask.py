@@ -5,24 +5,25 @@ from api.models import Database
 class Users(Database):
     def signup_users(self, data):
         query = "INSERT INTO users(firstname, lastname, email, password, role)\
-        VALUES('{}','{}','{}','{}','{}')".format(data["firstname"], data["lastname"],\
-        data["email"], data["password"],data["role"])
+        VALUES('{}','{}','{}','{}','{}')".format(data["firstname"], data["lastname"],
+                                                 data["email"], data["password"], data["role"])
         self.cur.execute(query)
         return data
 
 class Business(Database):
     def add_business(self, business):
         query = "INSERT INTO business(business_name, business_location, business_telephone, staff_id)\
-        VALUES('{}','{}','{}','{}')".format(business['business_name'], business["business_location"],\
-        business["business_telephone"], business["staff_id"])
+        VALUES('{}','{}','{}','{}')".format(business['business_name'], business["business_location"],
+                                            business["business_telephone"], business["staff_id"])
         self.cur.execute(query)
         return business
+
 
 class HairStyle(Database):
     def add_hairstyle(self, hair):
         query = "INSERT INTO hairstyle(hairstyle_name, hairstyle_description, price_range, staff_id)\
-        VALUES('{}','{}','{}','{}')".format(hair['hairstyle_name'], hair['hairstyle_description'],\
-        hair['price_range'], hair['staff_id'])
+        VALUES('{}','{}','{}','{}')".format(hair['hairstyle_name'], hair['hairstyle_description'],
+                                            hair['price_range'], hair['staff_id'])
         self.cur.execute(query)
         return hair
 
@@ -34,11 +35,20 @@ class HairStyle(Database):
 
     def add_services(self, service):
         query = "INSERT INTO services(service_name, service_description, price_range, staff_id)\
-        VALUES('{}','{}','{}','{}')".format(service['service_name'], service['service_description'],\
-        service['price_range'], service['staff_id'])
+        VALUES('{}','{}','{}','{}')".format(service['service_name'], service['service_description'],
+                                            service['price_range'], service['staff_id'])
         self.cur.execute(query)
         return service
 
+    def get_stylists(self, x):
+        query = (f"select (users.email) from hairstyle left join users \
+                 on users.user_id=hairstyle.staff_id where user_id is not null ")
+        for key in x:
+            query += f" and {key}='{x[key]}'"
+        self.dict_cur.execute(query)
+        stylists = self.dict_cur.fetchall()
+        return stylists
+      
     def get_specific_hairstyle(self, hairstyleId):
         query = "SELECT * FROM hairstyle WHERE hairstyle_id = '{}'".format(hairstyleId)
         self.cur.execute(query)

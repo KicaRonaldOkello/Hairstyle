@@ -21,8 +21,38 @@
 ```
 {
     "email":"asdfgh@gmail.com",
-    "password":"sdfghfd",
+    "lastname":"sdfghfd",
     "firstname":"ddff",
     "password":"sdfgds"
 }
+```
+
+#### Add Hair Style
+
+URL `/api/v1/stylist/hairstyles` 
+
+METHOD `POST`
+
+SAMPLE DATA
+```
+{
+    "hairstyle_name":"kicky",
+	"hairstyle_description":"sdfgdsx",
+    "price_range":20000,
+    "staff_id":1
+	
+}
+```
+### Stylist search 
+add parameters to query 
+
+`/api/v1/search?location=kikoni&hairstyle_name=kicky&price_range=40000`
+
+METHOD `GET`
+
+PARAMETERS
+```
+location            str
+style               str                 
+price_range         int
 ```
