@@ -1,12 +1,15 @@
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from api import app, api
+import os
+from config import DevelopmentConfig
+
+app.config.from_object(DevelopmentConfig)
 
 
 class Database:
     def __init__(self):
-        self.conn = psycopg2.connect(
-            dbname="hairstyle", user="postgres", host="localhost", password="password")
+        self.conn = psycopg2.connect(os.environ["DATABASE_URL"])
         self.conn.autocommit = True
         self.cur = self.conn.cursor()
         self.dict_cur = self.conn.cursor(cursor_factory=RealDictCursor)

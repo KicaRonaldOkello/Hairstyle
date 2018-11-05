@@ -10,10 +10,6 @@ class Users(Database):
         self.cur.execute(query)
         return data
 
-    def check_login(self, data):
-        return True
-
-
 class Business(Database):
     def add_business(self, business):
         query = "INSERT INTO business(business_name, business_location, business_telephone, staff_id)\
@@ -52,3 +48,16 @@ class HairStyle(Database):
         self.dict_cur.execute(query)
         stylists = self.dict_cur.fetchall()
         return stylists
+      
+    def get_specific_hairstyle(self, hairstyleId):
+        query = "SELECT * FROM hairstyle WHERE hairstyle_id = '{}'".format(hairstyleId)
+        self.cur.execute(query)
+        hairstyle = self.cur.fetchone()
+        return hairstyle
+
+    def update_hairstyle(self,hairstyleId, hairstyle):
+        query = "UPDATE hairstyle SET hairstyle_name = '{}',hairstyle_description = '{}',\
+        price_range = '{}', staff_id = '{}' WHERE hairstyle.hairstyle_id = '{}'".format(hairstyle["hairstyle_name"],\
+        hairstyle["hairstyle_description"], hairstyle["price_range"], hairstyle["staff_id"],hairstyleId)
+        self.cur.execute(query)
+        return hairstyle

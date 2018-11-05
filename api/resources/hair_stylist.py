@@ -32,6 +32,21 @@ class Hairstyles(Resource):
         all_hairs = b.get_hairstyles()
         return {"hairstyles": all_hairs}, 200
 
+class SpecificHairStyle(Resource):
+    def put(self, hairstyleId):
+        hairstyle = {
+            'hairstyle_name':request.json['hairstyle_name'],
+            'hairstyle_description':request.json['hairstyle_description'],
+            'price_range':request.json['price_range'],
+            'staff_id':request.json['staff_id']
+        }
+        b.update_hairstyle(hairstyleId, hairstyle)
+        return {"message":"Hairstyle updated"}, 201
+
+    def get(self, hairstyleId):
+        specific_hairstyle =  b.get_specific_hairstyle(hairstyleId)
+        return {"message":specific_hairstyle}, 200
+
 class OtherServices(Resource):
     def post(self):
         service = {
