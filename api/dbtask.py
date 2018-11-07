@@ -40,14 +40,14 @@ class HairStyle(Database):
         self.cur.execute(query)
         return service
 
-    def get_stylists(self, x):
-        query = (f"select (users.email) from hairstyle left join users \
-                 on users.user_id=hairstyle.staff_id where user_id is not null ")
-        for key in x:
-            query += f" and {key}='{x[key]}'"
-        self.dict_cur.execute(query)
-        stylists = self.dict_cur.fetchall()
-        return stylists
+    # def get_stylists(self, x):
+    #     query = (f"select (users.email) from hairstyle left join users \
+    #              on users.user_id=hairstyle.staff_id where user_id is not null ")
+    #     for key in x:
+    #         query += f" and {key}='{x[key]}'"
+    #     self.dict_cur.execute(query)
+    #     stylists = self.dict_cur.fetchall()
+    #     return stylists
       
     def get_specific_hairstyle(self, hairstyleId):
         query = "SELECT * FROM hairstyle WHERE hairstyle_id = '{}'".format(hairstyleId)
