@@ -1,0 +1,25 @@
+language: python
+python:
+  - "3.6"
+cache: pip
+# command to install dependencies
+addons:
+  postgresql: "9.5"
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - psql -c 'create database hairstyle;' -U postgres
+install:
+  - pip install -r requirements.txt
+  - pip install coverage
+  - pip install coveralls
+  - pip install nose
+
+# command to run tests
+script:
+  - nosetests -v --with-coverage --cover-package=api
+
+#for coveralls
+after_success:
+  - coveralls
+
